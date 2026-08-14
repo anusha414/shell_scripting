@@ -27,4 +27,13 @@ systemctl list-units --type=service:- lists all the services that are running
 systemctl stop <service-name>:- to stop the a service
 systemctl start <service-name>:- to start the service
 
+5. LOGS:-
+An application runs as multiple processes in linux machined
+Loga are stored here:- /var/log/myapp/app.log--->contains logs from the moment the file was created until something rotates, truncates, or deletes it.
+To retrieve logs from a specific date:- grep "^2026-05-01" /var/log/myapp/app.log
+
+6. Find
+
+7. basename
+
 
