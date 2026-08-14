@@ -72,3 +72,12 @@ renice -n <priority-id> -p <pid>:- to set the priority for the process in execut
 -19(more priority)-------->20(less priority) at the cpu
 By default whichever process spends more time at the cpu is considered high priority
 
+12. Curl:-
+It is used to send HTTP/HTTPS requests, test APIs, check website availability, download files, and troubleshoot network issues.
+Think of it as a tool that lets you communicate with web servers directly from the command line.
+It is also used to download content from remote urls, and files.
+eg:- curl https://api.github.com
+curl -o file.html https://example.com:- saves output to a file
+curl -O https://example.com/app.zip:- Download a File Keeping Original Name
+curl -s -o /dev/null -w "%{http_code}" https://google.com:- Show Only HTTP Status Code
+
