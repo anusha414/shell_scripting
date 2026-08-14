@@ -21,10 +21,20 @@ do
 
     # Execute deployment commands remotely
     ssh user@$SERVER "systemctl restart $SERVICE_NAME"
-EOF
-    if [ $? -eq 0 ]; then
-        echo "Deployment successful on $SERVER"
-    else
-        echo "Deployment failed on $SERVER"
+done
+
+2. create a script to monitor disk usage and send alerts if it exceeds 80%.
+#!/bin/bash
+THRESHOLD=80
+EMAIL="admin@example.com"
+HOST=$(hostname)
+df -hP | awk 'NR>1 {print $1, $5, $6}' | while read filesystem usage mountpoint
+do
+    usage_percent=$(echo $usage | tr -d '%')
+    if [ "$usage_percent" -ge "$THRESHOLD" ]; then
+        SUBJECT="Disk Usage Alert on $HOST"
+        MESSAGE="WARNING: Disk usage on $HOST exceeded ${THRESHOLD}%.\n\nFilesystem: $filesystem\nMount Point: $mountpoint\nUsage: $usage"
+        echo -e "$MESSAGE" | mail -s "$SUBJECT" "$EMAIL"
+        echo "$(date): Alert sent for $filesystem ($usage)" >> /var/log/disk_alert.log
     fi
 done
