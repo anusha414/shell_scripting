@@ -1,4 +1,4 @@
-Video:- 
+Video:- https://www.youtube.com/watch?v=SMVguUUYtec
 
 1. Automate the deployment of an application to multiple servers using shell script
 A:- 
@@ -38,3 +38,37 @@ do
         echo "$(date): Alert sent for $filesystem ($usage)" >> /var/log/disk_alert.log
     fi
 done
+
+3. script to check if a service is running and start if it is not.
+#!/bin/bash
+SERVICE="nginx"
+if systemctl is-active --quiet "$SERVICE"
+then
+    echo "$SERVICE is running."
+else
+    echo "$SERVICE is NOT running. Attempting to start..."
+    systemctl start "$SERVICE"
+fi
+NOTE:- --quiet:- No output is shown. Instead, the command returns an exit code.
+
+4. write a script to backup logs older than 7days and delete the original files
+#!/bin/bash
+LOG_DIR="/var/log/myapp"
+BACKUP_DIR="/backup/logs"
+mkdir -p "$BACKUP_DIR"
+find "$LOG_DIR" -type f -mtime +7 | while read file
+do
+    gzip -c "$file" > "$BACKUP_DIR/$(basename "$file").gz" && rm -f "$file"
+done
+
+5. script to check the health of a web application by sending a http request and checking the response
+#!/bin/bash
+URL="https://myapp.example.com/health"
+HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+if [ "$HTTP_CODE" -eq 200 ]; then
+    echo "Application is healthy. HTTP Status: $HTTP_CODE"
+    exit 0
+else
+    echo "Application is unhealthy. HTTP Status: $HTTP_CODE"
+    exit 1
+fi
