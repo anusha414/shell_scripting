@@ -22,7 +22,7 @@ syntax:-
 echo "Deployment completed successfully." | mail -s "Deployment Status" team@example.com
 
 4. SERVICE MANAGEMNT:-
-Services are the process that will be excuted in the background and they start running at the boot of the system.
+Services are the process that will be executed in the background and they start running at the boot of the system.
 systemctl list-units --type=service:- lists all the services that are running
 systemctl stop <service-name>:- to stop the a service
 systemctl start <service-name>:- to start the service
@@ -32,7 +32,15 @@ An application runs as multiple processes in linux machined
 Loga are stored here:- /var/log/myapp/app.log--->contains logs from the moment the file was created until something rotates, truncates, or deletes it.
 To retrieve logs from a specific date:- grep "^2026-05-01" /var/log/myapp/app.log
 
-6. Find
+6. Find command:- https://www.geeksforgeeks.org/linux-unix/find-command-in-linux-with-examples/
+The find command in Linux is used to search for files and directories based on name, type, size, date, or other conditions. It scans the specified directory and its sub directories to locate files matching the given criteria.
+eg:- find ./GFG -name *.txt 
+find ./GFG -perm 664
+find . -type d
+find /path/to/search -mtime -7
+find / -type f -size +100M  
+
+NOTE:- +7:- more than 7 days, -7:- less than 7 days
 
 7. basename
 
