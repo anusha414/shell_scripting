@@ -6,4 +6,25 @@ It is commonly used by system administrators to move backup files, fetch logs, c
 syntax:- scp [file_name]  remoteuser@remotehost:/remote/directory
 
 To copy a file from a remote machine to your local system, you just reverse the source and destination
-syntax: scp user@remotehost:/home/user/file_name  .
+syntax: scp user@remotehost:/home/user/file_name .
+
+2. DISK:-
+disk refers to a physical or virtual storage device used to store data permanently.
+A disk can be divided into partitions, which are smaller sections of the disk.
+df -h-------------> display the amount of storage, used storage left storage.
+du -sh <folder>----------->displays the amount of storage/disk used by that folder
+Alerting script
+df -h | awk '$5+0 > 80 {print "ALERT: Disk usage above 80% on", $6}'
+
+3. Mail:-
+The mail command in Linux is used to send and read email from the command line.
+syntax:-
+echo "Deployment completed successfully." | mail -s "Deployment Status" team@example.com
+
+4. SERVICE MANAGEMNT:-
+Services are the process that will be excuted in the background and they start running at the boot of the system.
+systemctl list-units --type=service:- lists all the services that are running
+systemctl stop <service-name>:- to stop the a service
+systemctl start <service-name>:- to start the service
+
+
