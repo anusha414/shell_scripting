@@ -42,6 +42,33 @@ find / -type f -size +100M
 
 NOTE:- +7:- more than 7 days, -7:- less than 7 days
 
-7. basename
+7. basename:- Returns only the filename from a full path.
+eg:- basename /var/log/myapp/app.log
+output:- app.log
 
+8. dirname:- Returns the directory portion of a path.
+eg:- dirname /var/log/myapp/app.log
+output:- /var/log/myapp
+
+9. realpath:- Returns the absolute path.
+eg:- realpath app.log
+output:- /home/anusha/app.log
+
+10: HTTPS Status code
+4xx:- Client error codes
+4xx HTTP status codes mean the client (browser, app, or user request) did something wrong, and the server cannot process the request as sent.
+
+11. PROCESS MANAGEMENT:-
+A running instance of any application in linux is called process.
+ps aux:- lists all running processes along with cpu and memeory utilization
+ps aux | wc-l :- lists number of running process
+ps -ef:- displays the list of running process
+kill <pid>:- to kill a process
+ps aux | grep "java":- list the java related processes, NOTE:- if the output is only single java which means it showed the same command
+kill -9 <pid>:- to forcefully delete the process
+kill -STOP <pid>:- to temporarily stop nthe process
+kill -CONT <pid>:- to resume the process
+renice -n <priority-id> -p <pid>:- to set the priority for the process in execution
+-19(more priority)-------->20(less priority) at the cpu
+By default whichever process spends more time at the cpu is considered high priority
 
