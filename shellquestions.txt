@@ -1,0 +1,34 @@
+Video:- 
+
+1. Automate the deployment of an application to multiple servers using shell script
+A:- 
+#!/bin/bash
+# List of target servers
+SERVERS=(
+    "appserver01.company.com"
+    "appserver02.company.com"
+    "appserver03.company.com"
+)
+APP_FILE="myapp.jar"
+DEPLOY_PATH="/opt/myapp"
+SERVICE_NAME="myapp"
+for SERVER in "${SERVERS[@]}"
+do
+    echo "Deploying to $SERVER..."
+
+    # Copy artifact
+    scp "$APP_FILE" "deployuser@$SERVER:$DEPLOY_PATH/"
+
+    # Execute deployment commands remotely
+    ssh "deployuser@$SERVER" << EOF
+        sudo systemctl stop $SERVICE_NAME
+        cp $DEPLOY_PATH/$APP_FILE $DEPLOY_PATH/current/
+        sudo systemctl start $SERVICE_NAME
+        sudo systemctl status $SERVICE_NAME --no-pager
+EOF
+    if [ $? -eq 0 ]; then
+        echo "Deployment successful on $SERVER"
+    else
+        echo "Deployment failed on $SERVER"
+    fi
+done
