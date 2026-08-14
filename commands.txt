@@ -1,0 +1,9 @@
+1. SCP(Secure Copy Protocol):-
+The scp (Secure Copy Protocol) command is used to securely transfer files and directories between systems over a network.
+scp (Secure Copy Protocol) is a Linux/Unix command used to securely copy files and directories between computers over SSH.
+It works over SSH, which means all transferred data is encrypted. 
+It is commonly used by system administrators to move backup files, fetch logs, copy configuration files, and transfer data between servers safely and quickly.
+syntax:- scp [file_name]  remoteuser@remotehost:/remote/directory
+
+To copy a file from a remote machine to your local system, you just reverse the source and destination
+syntax: scp user@remotehost:/home/user/file_name  .
