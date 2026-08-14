@@ -1,0 +1,4 @@
+Video:- https://www.youtube.com/watch?v=0jgqMKuADX0
+1. Script to print errors from a remote log
+curl can fetch objects from S3 if the object is publicly accessible or if you use a pre-signed URL.
+eg:- curl https://my-bucket.s3.amazonaws.com/app.log | grep -i error
