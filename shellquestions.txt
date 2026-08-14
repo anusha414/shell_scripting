@@ -20,11 +20,7 @@ do
     scp "$APP_FILE" "deployuser@$SERVER:$DEPLOY_PATH/"
 
     # Execute deployment commands remotely
-    ssh "deployuser@$SERVER" << EOF
-        sudo systemctl stop $SERVICE_NAME
-        cp $DEPLOY_PATH/$APP_FILE $DEPLOY_PATH/current/
-        sudo systemctl start $SERVICE_NAME
-        sudo systemctl status $SERVICE_NAME --no-pager
+    ssh user@$SERVER "systemctl restart $SERVICE_NAME"
 EOF
     if [ $? -eq 0 ]; then
         echo "Deployment successful on $SERVER"
