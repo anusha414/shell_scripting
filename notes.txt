@@ -1,0 +1,25 @@
+ECHO:-
+The basic use of echo that we have seen so far will produce a text output and a new 
+line.
+If we want to suppress the new line, especially useful if we are to prompt users, we 
+can do this in the following two ways with the help of echo:
+$ echo -n "Which directory do you want to use? "
+$ echo -e "Which directory do you want to use? \c
+
+$REPLY:-
+$REPLY is a special shell variable used in Bash and some other shells.
+It is most commonly used with the read command when you do not specify a variable name:
+eg:- read
+    echo "$REPLY"
+If the user enters "hello world", then "hello world" will be printed.
+
+READ:-
+read -p "Enter your name: " name
+We use the read command with the -p option. The argument that follows the option 
+is the text that appears in the prompt. Normally, we will make sure that there is a 
+trailing space at the end of the text to ensure that we can clearly see what we type. 
+The last argument supplied here is the variable we want to populate, we simply call 
+it name. Variables are case-sensitive too. Even if we did not supply the last argument, 
+we can still store the user's response, but this time in the REPLY variable
+
+read -s -p "Press any key to exit":- to read sensitive data use "-s" option
